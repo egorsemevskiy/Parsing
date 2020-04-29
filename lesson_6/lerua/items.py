@@ -22,10 +22,6 @@ def price_item(values):
     return values
 
 
-def name_params_item(values):
-    return values
-
-
 def value_params_item(values):
     values = values.split('\n')
     values = ''.join(values)
@@ -36,8 +32,8 @@ def value_params_item(values):
 class LeruaItem(scrapy.Item):
     # define the fields for your item here like:
     _id = scrapy.Field()
-    name = scrapy.Field(output_processor=TakeFirst())
+    title = scrapy.Field(output_processor=TakeFirst())
     price = scrapy.Field(input_processor=MapCompose(price_item), output_processor=TakeFirst())
     photos = scrapy.Field(input_processor=MapCompose(cleaner_photo))
-    name_params = scrapy.Field(input_processor=MapCompose(name_params_item))
+    name_params = scrapy.Field()
     value_params = scrapy.Field(input_processor=MapCompose(value_params_item))

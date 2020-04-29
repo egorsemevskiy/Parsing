@@ -15,7 +15,7 @@ class LeruaPipeline(object):
 
     def __init__(self):
         client = MongoClient('localhost', 27017)
-        self.mongo_base = client.avito_photo_312
+        self.mongo_base = client.lerua_29
 
     def process_item(self, item, spider):
         collection = self.mongo_base[spider.name]

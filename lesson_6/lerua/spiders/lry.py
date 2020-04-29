@@ -20,9 +20,9 @@ class LrySpider(scrapy.Spider):
 
     def item_parse(self, response: HtmlResponse):
         item = ItemLoader(item=LeruaItem(), response=response)
-        item.add_xpath('name', "//h1[@class='header-2']/text()")
+        item.add_xpath('title', "//h1[@class='header-2']/text()")
         item.add_xpath('price', "//span[@slot='price']/text()")
-        item.add_xpath('photos', "//uc-pdp-media-carousel[@slot='media-content']//picture/@srcset")
+        item.add_xpath('photos', "//pictures[@slot='pictures']/img/@data-origin")
         item.add_xpath('name_params', "//dt[@class='def-list__term']/text()")
         item.add_xpath('value_params', "//dd[@class='def-list__definition']/text()")
         yield item.load_item()
